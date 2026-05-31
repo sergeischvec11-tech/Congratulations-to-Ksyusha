@@ -8,8 +8,6 @@ const photoButtons = [...document.querySelectorAll("[data-photo]")];
 const lightbox = document.querySelector("[data-lightbox]");
 const lightboxImage = document.querySelector("[data-lightbox-image]");
 const lightboxClose = document.querySelector("[data-lightbox-close]");
-const giftScreen = document.querySelector(".present");
-const openGiftButton = document.querySelector("[data-open-gift]");
 
 function setSongPlaying(isPlaying) {
   songScreen.classList.toggle("is-playing", isPlaying);
@@ -40,26 +38,18 @@ async function toggleSong() {
 }
 
 function showScreen(name, syncHash = true) {
-  const screenName = name === "present-open" ? "present" : name;
-
   screens.forEach((screen) => {
-    screen.classList.toggle("is-active", screen.dataset.screen === screenName);
+    screen.classList.toggle("is-active", screen.dataset.screen === name);
   });
+  document.body.classList.toggle("is-present-screen", name === "present");
 
   if (syncHash) {
     history.replaceState(null, "", `#${name}`);
-  }
-
-  if (name === "present-open") {
-    openGift();
   }
 }
 
 navButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    if (button.classList.contains("restart")) {
-      resetGift();
-    }
     showScreen(button.dataset.target);
   });
 });
@@ -121,23 +111,11 @@ lightbox.addEventListener("click", (event) => {
   }
 });
 
-function openGift() {
-  giftScreen.classList.add("is-gift-open");
-  openGiftButton.disabled = true;
-}
-
-function resetGift() {
-  giftScreen.classList.remove("is-gift-open");
-  openGiftButton.disabled = false;
-}
-
-openGiftButton.addEventListener("click", openGift);
-
 window.addEventListener("hashchange", () => {
   const requested = location.hash.slice(1);
-  const exists = requested === "present-open" || screens.some((screen) => screen.dataset.screen === requested);
+  const exists = screens.some((screen) => screen.dataset.screen === requested);
   showScreen(exists ? requested : "intro", false);
 });
 
 const initial = location.hash.slice(1);
-showScreen(initial === "present-open" || screens.some((screen) => screen.dataset.screen === initial) ? initial : "intro", false);
+showScreen(screens.some((screen) => screen.dataset.screen === initial) ? initial : "intro", false);

@@ -222,6 +222,10 @@ h2 {
   transform: rotate(-12deg);
 }
 
+body.is-present-screen .ribbon {
+  opacity: 0;
+}
+
 .ribbon-left {
   left: clamp(0.7rem, 3vw, 2.2rem);
   top: clamp(1rem, 5vw, 3rem);
@@ -648,207 +652,136 @@ h2 {
   text-align: right;
 }
 
-.gift-stage {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: min(34rem, 94vw);
-  min-height: clamp(20rem, 60vh, 40rem);
+.present {
+  background:
+    radial-gradient(circle at 18% 14%, rgba(130, 210, 255, 0.28), transparent 18rem),
+    radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.12), transparent 16rem),
+    radial-gradient(circle at 50% 100%, rgba(67, 169, 214, 0.28), transparent 22rem),
+    linear-gradient(155deg, #06172d 0%, #0a3156 50%, #146184 100%);
 }
 
-.star-gift-animation {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 1;
-  width: min(26rem, 72vw);
-  aspect-ratio: 3 / 4;
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.72);
-  pointer-events: none;
-  transition: opacity 520ms ease 380ms, transform 620ms ease 380ms;
-}
-
-.gift-frame {
+.present::before {
+  content: "";
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  opacity: 0;
-  border: 3px solid rgba(255, 253, 248, 0.94);
-  background: #020202;
-  box-shadow: 0 28px 54px rgba(7, 38, 58, 0.34);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.42;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.86) 0 1px, transparent 1.2px),
+    radial-gradient(circle, rgba(202, 238, 255, 0.68) 0 1px, transparent 1.3px);
+  background-position: 0 0, 28px 36px;
+  background-size: 92px 92px, 138px 138px;
 }
 
-.gift-frame:first-child {
-  opacity: 1;
-}
-
-.present.is-gift-open .star-gift-animation {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.present.is-gift-open .gift-frame:nth-child(1) {
-  animation: starMapFrameOne 4.8s steps(1, end) forwards;
-}
-
-.present.is-gift-open .gift-frame:nth-child(2) {
-  animation: starMapFrameTwo 4.8s steps(1, end) forwards;
-}
-
-.present.is-gift-open .gift-frame:nth-child(3) {
-  animation: starMapFrameThree 4.8s steps(1, end) forwards;
-}
-
-.present.is-gift-open .gift-frame:nth-child(4) {
-  animation: starMapFrameFour 4.8s steps(1, end) forwards;
-}
-
-.present-box {
-  position: relative;
-  z-index: 2;
-  width: clamp(10rem, 34vw, 18rem);
-  height: clamp(9rem, 29vw, 15rem);
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  transition: transform 180ms ease;
-}
-
-.present-box:hover {
-  transform: translateY(-4px);
-}
-
-.present-box:disabled {
-  cursor: default;
+.shooting-stars {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
   pointer-events: none;
 }
 
-.box,
-.lid {
+.shooting-stars span {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  background: transparent;
-  border: 5px solid var(--cream);
-  box-shadow: 0 24px 38px var(--shadow);
-}
-
-.box {
-  bottom: 0;
-  width: 78%;
-  height: 62%;
-}
-
-.lid {
-  top: 18%;
-  width: 92%;
-  height: 24%;
-  animation: lidFloat 2.2s ease-in-out infinite alternate;
-}
-
-.box::before,
-.lid::before {
-  content: "";
-  position: absolute;
-  top: -5px;
-  bottom: -5px;
-  left: 50%;
-  width: 5px;
+  top: -12vh;
+  left: var(--star-x);
+  width: 3px;
+  height: 3px;
+  border-radius: 999px;
+  opacity: 0;
   background: var(--cream);
-  transform: translateX(-50%);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.92);
 }
 
-.bow {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 46%;
-  aspect-ratio: 2.2;
-  transform: translateX(-50%);
-}
-
-.bow::before,
-.bow::after {
+.shooting-stars span::after {
   content: "";
   position: absolute;
-  top: 0;
-  width: 48%;
-  height: 100%;
-  border: 5px solid var(--cream);
-  border-radius: 60% 45% 60% 45%;
+  top: 1px;
+  right: 1px;
+  width: clamp(4rem, 14vw, 8rem);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.95));
+  transform: translateX(-100%) rotate(-35deg);
+  transform-origin: right center;
 }
 
-.bow::before {
-  left: 0;
-  transform: rotate(18deg);
+.present.is-active .shooting-stars span {
+  animation: starFall var(--star-speed) linear infinite;
+  animation-delay: var(--star-delay);
 }
 
-.bow::after {
-  right: 0;
-  transform: rotate(-18deg);
+.shooting-stars span:nth-child(1) {
+  --star-x: 8%;
+  --star-speed: 3.1s;
+  --star-delay: 0.1s;
 }
 
-@keyframes lidFloat {
-  to { transform: translate(-50%, -10px) rotate(-2deg); }
+.shooting-stars span:nth-child(2) {
+  --star-x: 24%;
+  --star-speed: 3.8s;
+  --star-delay: 1.1s;
 }
 
-.present.is-gift-open .lid {
-  animation: giftLidFly 1.05s cubic-bezier(.22, .78, .18, 1) forwards;
+.shooting-stars span:nth-child(3) {
+  --star-x: 44%;
+  --star-speed: 2.9s;
+  --star-delay: 0.55s;
 }
 
-.present.is-gift-open .bow {
-  animation: giftBowFly 1.05s cubic-bezier(.22, .78, .18, 1) forwards;
+.shooting-stars span:nth-child(4) {
+  --star-x: 62%;
+  --star-speed: 3.5s;
+  --star-delay: 1.65s;
 }
 
-.present.is-gift-open .box {
-  animation: giftBoxDrop 1.05s cubic-bezier(.22, .78, .18, 1) forwards;
+.shooting-stars span:nth-child(5) {
+  --star-x: 78%;
+  --star-speed: 3.2s;
+  --star-delay: 0.85s;
 }
 
-@keyframes giftLidFly {
-  to {
+.shooting-stars span:nth-child(6) {
+  --star-x: 90%;
+  --star-speed: 4s;
+  --star-delay: 2.05s;
+}
+
+.gift-stage {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: min(27rem, 78vw);
+}
+
+.star-map-poster {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #020202;
+  border: 3px solid rgba(255, 253, 248, 0.94);
+  box-shadow: 0 30px 58px rgba(3, 18, 32, 0.54);
+}
+
+@keyframes starFall {
+  0% {
     opacity: 0;
-    transform: translate(-50%, -190%) rotate(-18deg);
+    transform: translate3d(0, 0, 0);
   }
-}
 
-@keyframes giftBowFly {
-  to {
+  8% {
+    opacity: 1;
+  }
+
+  72% {
+    opacity: 1;
+  }
+
+  100% {
     opacity: 0;
-    transform: translate(-52%, -250%) rotate(18deg);
+    transform: translate3d(34vw, 124vh, 0);
   }
-}
-
-@keyframes giftBoxDrop {
-  to {
-    opacity: 0;
-    transform: translate(-50%, 185%) scale(0.94);
-  }
-}
-
-@keyframes starMapFrameOne {
-  0%, 24% { opacity: 1; }
-  25%, 100% { opacity: 0; }
-}
-
-@keyframes starMapFrameTwo {
-  0%, 24% { opacity: 0; }
-  25%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
-}
-
-@keyframes starMapFrameThree {
-  0%, 49% { opacity: 0; }
-  50%, 74% { opacity: 1; }
-  75%, 100% { opacity: 0; }
-}
-
-@keyframes starMapFrameFour {
-  0%, 74% { opacity: 0; }
-  75%, 100% { opacity: 1; }
 }
 
 @media (max-width: 720px) {
@@ -948,8 +881,8 @@ h2 {
     display: none;
   }
 
-  .star-gift-animation {
-    width: min(20rem, 64vw);
+  .gift-stage {
+    width: min(17.5rem, 72vw);
   }
 }
 

@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Montserrat:wght@500;700;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=gift-animation-v3">
+  <link rel="stylesheet" href="styles.css?v=night-gift-v2">
 </head>
 <body>
   <main class="site-shell" aria-live="polite">
@@ -139,21 +139,12 @@
     </section>
 
     <section class="screen present" data-screen="present">
-      <div class="gift-stage">
-        <div class="star-gift-animation" aria-label="Звёздная карта">
-          <img class="gift-frame" src="assets/gift/star-map-1.png" alt="">
-          <img class="gift-frame" src="assets/gift/star-map-2.png" alt="">
-          <img class="gift-frame" src="assets/gift/star-map-3.png" alt="">
-          <img class="gift-frame" src="assets/gift/star-map-4.png" alt="">
-        </div>
-        <button class="present-box" type="button" data-open-gift aria-label="Открыть подарок">
-          <span class="lid"></span>
-          <span class="box"></span>
-          <span class="bow"></span>
-        </button>
+      <div class="shooting-stars" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
       </div>
-      <p class="subtitle">Пусть сегодня случится что-то очень хорошее.</p>
-      <button class="text-button restart" type="button" data-target="intro">ещё раз</button>
+      <div class="gift-stage" aria-label="Звёздная карта">
+        <img class="star-map-poster" src="assets/gift/star-map-2.png" alt="">
+      </div>
     </section>
   </main>
   <div class="photo-lightbox" data-lightbox hidden>
@@ -162,6 +153,6 @@
   </div>
   <audio class="background-audio" id="song-audio" controls preload="auto" src="assets/ruki-vverh-18-mne-uzhe.mp4"></audio>
 
-  <script src="script.js?v=gift-animation"></script>
+  <script src="script.js?v=night-gift-v2"></script>
 </body>
 </html>
