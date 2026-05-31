@@ -3,10 +3,16 @@ const navButtons = [...document.querySelectorAll("[data-target]")];
 const songScreen = document.querySelector(".song");
 const playToggle = document.querySelector(".play-toggle");
 const songAudio = document.querySelector("#song-audio");
+const appShell = document.querySelector(".site-shell");
+
+function setSongPlaying(isPlaying) {
+  songScreen.classList.toggle("is-playing", isPlaying);
+  appShell.classList.toggle("is-song-playing", isPlaying);
+  playToggle.setAttribute("aria-label", isPlaying ? "Остановить песню" : "Включить песню");
+}
 
 function pauseSong() {
-  songScreen.classList.remove("is-playing");
-  playToggle.setAttribute("aria-label", "Включить песню");
+  setSongPlaying(false);
   songAudio.pause();
 }
 
@@ -14,10 +20,9 @@ async function toggleSong() {
   if (songAudio.paused) {
     try {
       await songAudio.play();
-      songScreen.classList.add("is-playing");
-      playToggle.setAttribute("aria-label", "Остановить песню");
+      setSongPlaying(true);
     } catch {
-      songScreen.classList.remove("is-playing");
+      setSongPlaying(false);
     }
   } else {
     pauseSong();
@@ -28,10 +33,6 @@ function showScreen(name, syncHash = true) {
   screens.forEach((screen) => {
     screen.classList.toggle("is-active", screen.dataset.screen === name);
   });
-
-  if (name !== "song") {
-    pauseSong();
-  }
 
   if (syncHash) {
     history.replaceState(null, "", `#${name}`);

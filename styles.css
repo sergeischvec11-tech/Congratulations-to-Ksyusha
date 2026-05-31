@@ -468,6 +468,10 @@ h2 {
   animation-play-state: running;
 }
 
+.site-shell.is-song-playing .song .record {
+  animation-play-state: running;
+}
+
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
@@ -500,6 +504,10 @@ h2 {
 .wave i:nth-child(8) { --n: 7; height: 58%; }
 
 .song.is-playing .wave i {
+  animation-play-state: running;
+}
+
+.site-shell.is-song-playing .song .wave i {
   animation-play-state: running;
 }
 
