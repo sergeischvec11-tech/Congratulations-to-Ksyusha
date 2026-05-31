@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Montserrat:wght@500;700;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=gift-animation">
 </head>
 <body>
   <main class="site-shell" aria-live="polite">
@@ -139,10 +139,18 @@
     </section>
 
     <section class="screen present" data-screen="present">
-      <div class="present-box" aria-hidden="true">
-        <div class="lid"></div>
-        <div class="box"></div>
-        <div class="bow"></div>
+      <div class="gift-stage">
+        <div class="star-gift-animation" aria-label="Звёздная карта">
+          <img class="gift-frame" src="assets/gift/star-map-1.png" alt="">
+          <img class="gift-frame" src="assets/gift/star-map-2.png" alt="">
+          <img class="gift-frame" src="assets/gift/star-map-3.png" alt="">
+          <img class="gift-frame" src="assets/gift/star-map-4.png" alt="">
+        </div>
+        <button class="present-box" type="button" data-open-gift aria-label="Открыть подарок">
+          <span class="lid"></span>
+          <span class="box"></span>
+          <span class="bow"></span>
+        </button>
       </div>
       <h2>Ксюша, это всё для тебя</h2>
       <p class="subtitle">Пусть сегодня случится что-то очень хорошее.</p>
@@ -155,6 +163,6 @@
   </div>
   <audio class="background-audio" id="song-audio" controls preload="auto" src="assets/ruki-vverh-18-mne-uzhe.mp4"></audio>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=gift-animation"></script>
 </body>
 </html>
