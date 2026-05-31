@@ -79,26 +79,31 @@
 
     <section class="screen memories" data-screen="memories">
       <div class="polaroid-board" aria-label="Коллаж для Ксюши">
-        <article class="photo-card tall">
+        <button class="photo-card tall" type="button" data-photo="assets/photos/ksyusha-1.jpg" aria-label="Открыть фото 1">
+          <img src="assets/photos/ksyusha-1.jpg" alt="">
           <span>К</span>
           <small>smile</small>
-        </article>
-        <article class="photo-card soft">
+        </button>
+        <button class="photo-card soft" type="button" data-photo="assets/photos/ksyusha-2.jpg" aria-label="Открыть фото 2">
+          <img src="assets/photos/ksyusha-2.jpg" alt="">
           <span>С</span>
           <small>light</small>
-        </article>
-        <article class="photo-card dark">
+        </button>
+        <button class="photo-card dark" type="button" data-photo="assets/photos/ksyusha-3.jpg" aria-label="Открыть фото 3">
+          <img src="assets/photos/ksyusha-3.jpg" alt="">
           <span>Ю</span>
           <small>magic</small>
-        </article>
-        <article class="photo-card warm">
+        </button>
+        <button class="photo-card warm" type="button" data-photo="assets/photos/ksyusha-4.jpg" aria-label="Открыть фото 4">
+          <img src="assets/photos/ksyusha-4.jpg" alt="">
           <span>Ш</span>
           <small>happy</small>
-        </article>
-        <article class="photo-card wide">
+        </button>
+        <button class="photo-card wide" type="button" data-photo="assets/photos/ksyusha-5.jpg" aria-label="Открыть фото 5">
+          <img src="assets/photos/ksyusha-5.jpg" alt="">
           <span>А</span>
           <small>birthday</small>
-        </article>
+        </button>
         <p class="birthday-script">happy birthday</p>
       </div>
       <button class="back-link" type="button" data-target="gifts">back</button>
@@ -144,6 +149,10 @@
       <button class="text-button restart" type="button" data-target="intro">ещё раз</button>
     </section>
   </main>
+  <div class="photo-lightbox" data-lightbox hidden>
+    <button class="lightbox-close" type="button" data-lightbox-close aria-label="Закрыть фото">×</button>
+    <img src="" alt="Фото Ксюши" data-lightbox-image>
+  </div>
   <audio class="background-audio" id="song-audio" controls preload="auto" src="assets/ruki-vverh-18-mne-uzhe.mp4"></audio>
 
   <script src="script.js"></script>

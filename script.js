@@ -4,6 +4,10 @@ const songScreen = document.querySelector(".song");
 const songAudio = document.querySelector("#song-audio");
 const appShell = document.querySelector(".site-shell");
 const audioButtons = [...document.querySelectorAll("[data-audio-toggle]")];
+const photoButtons = [...document.querySelectorAll("[data-photo]")];
+const lightbox = document.querySelector("[data-lightbox]");
+const lightboxImage = document.querySelector("[data-lightbox-image]");
+const lightboxClose = document.querySelector("[data-lightbox-close]");
 
 function setSongPlaying(isPlaying) {
   songScreen.classList.toggle("is-playing", isPlaying);
@@ -70,7 +74,37 @@ songAudio.addEventListener("pause", () => {
 
 window.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
-    showScreen("gifts");
+    if (!lightbox.hidden) {
+      closeLightbox();
+    } else {
+      showScreen("gifts");
+    }
+  }
+});
+
+function openLightbox(src) {
+  lightboxImage.src = src;
+  lightbox.hidden = false;
+  document.body.classList.add("is-lightbox-open");
+}
+
+function closeLightbox() {
+  lightbox.hidden = true;
+  lightboxImage.src = "";
+  document.body.classList.remove("is-lightbox-open");
+}
+
+photoButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    openLightbox(button.dataset.photo);
+  });
+});
+
+lightboxClose.addEventListener("click", closeLightbox);
+
+lightbox.addEventListener("click", (event) => {
+  if (event.target === lightbox) {
+    closeLightbox();
   }
 });
 
