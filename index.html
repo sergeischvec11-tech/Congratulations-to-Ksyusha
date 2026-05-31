@@ -18,7 +18,6 @@
     <div class="ribbon ribbon-right" aria-hidden="true">
       <span></span>
     </div>
-
     <section class="screen intro is-active" data-screen="intro">
       <div class="sparkles" aria-hidden="true"></div>
       <p class="eyebrow">birthday website</p>
@@ -108,7 +107,7 @@
     <section class="screen song" data-screen="song">
       <p class="eyebrow">this song reminds me of you</p>
       <div class="music-card">
-        <button class="play-toggle" type="button" aria-label="Включить анимацию песни">
+        <button class="play-toggle" type="button" data-audio-toggle aria-label="Включить музыку" aria-pressed="false">
           <svg viewBox="0 0 64 64" aria-hidden="true">
             <path d="M25 18v28l22-14-22-14Z"></path>
           </svg>
@@ -120,7 +119,6 @@
           <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
         </div>
         <p class="track-title">Руки Вверх - 18 мне уже</p>
-        <audio id="song-audio" preload="metadata" src="assets/ruki-vverh-18-mne-uzhe.mp4"></audio>
       </div>
       <button class="back-link" type="button" data-target="gifts">back</button>
     </section>
@@ -146,6 +144,7 @@
       <button class="text-button restart" type="button" data-target="intro">ещё раз</button>
     </section>
   </main>
+  <audio class="background-audio" id="song-audio" controls preload="auto" src="assets/ruki-vverh-18-mne-uzhe.mp4"></audio>
 
   <script src="script.js"></script>
 </body>

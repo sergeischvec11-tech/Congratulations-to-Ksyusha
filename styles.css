@@ -36,6 +36,18 @@ button {
   isolation: isolate;
 }
 
+.background-audio {
+  position: fixed;
+  left: 50%;
+  bottom: clamp(0.75rem, 3vw, 1.4rem);
+  z-index: 1000;
+  width: min(18rem, calc(100vw - 6rem));
+  height: 2.5rem;
+  border-radius: 999px;
+  box-shadow: 0 16px 26px var(--shadow);
+  transform: translateX(-50%);
+}
+
 .grain {
   position: fixed;
   inset: 0;
@@ -731,6 +743,7 @@ h2 {
   .ribbon-right {
     display: none;
   }
+
 }
 
 @media (prefers-reduced-motion: reduce) {

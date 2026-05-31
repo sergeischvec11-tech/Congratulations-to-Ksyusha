@@ -1,14 +1,18 @@
 const screens = [...document.querySelectorAll(".screen")];
 const navButtons = [...document.querySelectorAll("[data-target]")];
 const songScreen = document.querySelector(".song");
-const playToggle = document.querySelector(".play-toggle");
 const songAudio = document.querySelector("#song-audio");
 const appShell = document.querySelector(".site-shell");
+const audioButtons = [...document.querySelectorAll("[data-audio-toggle]")];
 
 function setSongPlaying(isPlaying) {
   songScreen.classList.toggle("is-playing", isPlaying);
   appShell.classList.toggle("is-song-playing", isPlaying);
-  playToggle.setAttribute("aria-label", isPlaying ? "Остановить песню" : "Включить песню");
+  document.body.classList.toggle("is-song-playing", isPlaying);
+  audioButtons.forEach((button) => {
+    button.setAttribute("aria-label", isPlaying ? "Остановить музыку" : "Включить музыку");
+    button.setAttribute("aria-pressed", String(isPlaying));
+  });
 }
 
 function pauseSong() {
@@ -43,13 +47,25 @@ navButtons.forEach((button) => {
   button.addEventListener("click", () => showScreen(button.dataset.target));
 });
 
-playToggle.addEventListener("click", () => {
-  toggleSong();
+audioButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    toggleSong();
+  });
 });
 
 songAudio.addEventListener("ended", () => {
   pauseSong();
   songAudio.currentTime = 0;
+});
+
+songAudio.addEventListener("play", () => {
+  setSongPlaying(true);
+});
+
+songAudio.addEventListener("pause", () => {
+  if (!songAudio.ended) {
+    setSongPlaying(false);
+  }
 });
 
 window.addEventListener("keydown", (event) => {
