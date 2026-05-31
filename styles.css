@@ -652,17 +652,19 @@ h2 {
   position: relative;
   display: grid;
   place-items: center;
-  width: min(28rem, 86vw);
-  min-height: clamp(16rem, 48vh, 30rem);
+  width: min(34rem, 94vw);
+  min-height: clamp(20rem, 60vh, 40rem);
 }
 
 .star-gift-animation {
   position: absolute;
+  left: 50%;
+  top: 50%;
   z-index: 1;
-  width: min(20rem, 72vw);
+  width: min(26rem, 72vw);
   aspect-ratio: 3 / 4;
   opacity: 0;
-  transform: scale(0.78);
+  transform: translate(-50%, -50%) scale(0.72);
   pointer-events: none;
   transition: opacity 520ms ease 380ms, transform 620ms ease 380ms;
 }
@@ -685,23 +687,23 @@ h2 {
 
 .present.is-gift-open .star-gift-animation {
   opacity: 1;
-  transform: scale(1);
+  transform: translate(-50%, -50%) scale(1);
 }
 
-.present.is-gift-open .gift-frame {
-  animation: starMapCycle 4.8s linear infinite;
+.present.is-gift-open .gift-frame:nth-child(1) {
+  animation: starMapFrameOne 4.8s steps(1, end) forwards;
 }
 
 .present.is-gift-open .gift-frame:nth-child(2) {
-  animation-delay: 1.2s;
+  animation: starMapFrameTwo 4.8s steps(1, end) forwards;
 }
 
 .present.is-gift-open .gift-frame:nth-child(3) {
-  animation-delay: 2.4s;
+  animation: starMapFrameThree 4.8s steps(1, end) forwards;
 }
 
 .present.is-gift-open .gift-frame:nth-child(4) {
-  animation-delay: 3.6s;
+  animation: starMapFrameFour 4.8s steps(1, end) forwards;
 }
 
 .present-box {
@@ -827,9 +829,26 @@ h2 {
   }
 }
 
-@keyframes starMapCycle {
-  0%, 22% { opacity: 1; }
+@keyframes starMapFrameOne {
+  0%, 24% { opacity: 1; }
   25%, 100% { opacity: 0; }
+}
+
+@keyframes starMapFrameTwo {
+  0%, 24% { opacity: 0; }
+  25%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes starMapFrameThree {
+  0%, 49% { opacity: 0; }
+  50%, 74% { opacity: 1; }
+  75%, 100% { opacity: 0; }
+}
+
+@keyframes starMapFrameFour {
+  0%, 74% { opacity: 0; }
+  75%, 100% { opacity: 1; }
 }
 
 @media (max-width: 720px) {
@@ -929,6 +948,9 @@ h2 {
     display: none;
   }
 
+  .star-gift-animation {
+    width: min(20rem, 64vw);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
