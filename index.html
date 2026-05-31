@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ксюша</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Montserrat:wght@500;700;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="site-shell" aria-live="polite">
+    <div class="grain"></div>
+    <div class="ribbon ribbon-left" aria-hidden="true">
+      <span></span>
+    </div>
+    <div class="ribbon ribbon-right" aria-hidden="true">
+      <span></span>
+    </div>
+
+    <section class="screen intro is-active" data-screen="intro">
+      <div class="sparkles" aria-hidden="true"></div>
+      <p class="eyebrow">birthday website</p>
+      <h1>Привет, Ксюша!</h1>
+      <p class="subtitle">Для тебя здесь спрятано немного тепла, музыки и улыбок.</p>
+      <div class="intro-doodle" aria-hidden="true">
+        <svg viewBox="0 0 180 150" role="img">
+          <path d="M54 104c-15-10-23-25-18-42 6-20 27-22 40-5 12-20 37-18 47 1 12 22-2 50-48 69-7-9-14-16-21-23Z"/>
+          <path d="M89 28c9 4 15 11 18 21"/>
+          <path d="M128 83c11-9 14-25 7-38"/>
+          <path d="M40 66c-7 15-3 30 13 43"/>
+        </svg>
+      </div>
+      <button class="text-button next-screen" type="button" data-target="gifts">дальше</button>
+    </section>
+
+    <section class="screen gifts" data-screen="gifts">
+      <p class="eyebrow">these are for you</p>
+      <h2>Эти подарки для тебя</h2>
+      <div class="gift-grid">
+        <button class="gift-item" type="button" data-target="memories" aria-label="Открыть воспоминания">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <rect x="12" y="18" width="40" height="30" rx="7"></rect>
+            <path d="M22 18l4-7h12l4 7"></path>
+            <circle cx="32" cy="33" r="9"></circle>
+            <circle cx="46" cy="25" r="2"></circle>
+          </svg>
+          <span>кадры</span>
+        </button>
+        <button class="gift-item" type="button" data-target="song" aria-label="Открыть музыку">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M18 38V25a14 14 0 0 1 28 0v13"></path>
+            <path d="M18 38v6a7 7 0 0 0 7 7h1V34h-1a7 7 0 0 0-7 7"></path>
+            <path d="M46 38v6a7 7 0 0 1-7 7h-1V34h1a7 7 0 0 1 7 7"></path>
+          </svg>
+          <span>песня</span>
+        </button>
+        <button class="gift-item" type="button" data-target="letter" aria-label="Открыть письмо">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <rect x="12" y="16" width="40" height="34" rx="4"></rect>
+            <path d="M15 20l17 16 17-16"></path>
+            <path d="M18 45h18"></path>
+          </svg>
+          <span>письмо</span>
+        </button>
+        <button class="gift-item" type="button" data-target="present" aria-label="Открыть подарок">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <rect x="12" y="27" width="40" height="25" rx="3"></rect>
+            <path d="M10 21h44v9H10z"></path>
+            <path d="M32 21v31"></path>
+            <path d="M32 20c-11-10-20-4-15 3 4 6 15-3 15-3Z"></path>
+            <path d="M32 20c11-10 20-4 15 3-4 6-15-3-15-3Z"></path>
+          </svg>
+          <span>сюрприз</span>
+        </button>
+      </div>
+      <button class="home-link" type="button" data-target="intro">home</button>
+    </section>
+
+    <section class="screen memories" data-screen="memories">
+      <div class="polaroid-board" aria-label="Коллаж для Ксюши">
+        <article class="photo-card tall">
+          <span>К</span>
+          <small>smile</small>
+        </article>
+        <article class="photo-card soft">
+          <span>С</span>
+          <small>light</small>
+        </article>
+        <article class="photo-card dark">
+          <span>Ю</span>
+          <small>magic</small>
+        </article>
+        <article class="photo-card warm">
+          <span>Ш</span>
+          <small>happy</small>
+        </article>
+        <article class="photo-card wide">
+          <span>А</span>
+          <small>birthday</small>
+        </article>
+        <p class="birthday-script">happy birthday</p>
+      </div>
+      <button class="back-link" type="button" data-target="gifts">back</button>
+    </section>
+
+    <section class="screen song" data-screen="song">
+      <p class="eyebrow">this song reminds me of you</p>
+      <div class="music-card">
+        <button class="play-toggle" type="button" aria-label="Включить анимацию песни">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M25 18v28l22-14-22-14Z"></path>
+          </svg>
+        </button>
+        <div class="record" aria-hidden="true">
+          <span></span>
+        </div>
+        <div class="wave" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </div>
+      <button class="back-link" type="button" data-target="gifts">back</button>
+    </section>
+
+    <section class="screen letter" data-screen="letter">
+      <article class="note">
+        <p class="note-title">Моя Ксюша,</p>
+        <p>Пусть твой день будет мягким, красивым и очень твоим. Пусть рядом будут люди, от которых спокойно на сердце, а впереди будет столько радости, сколько ты даже не успеешь загадать.</p>
+        <p>Ты заслуживаешь нежности, заботы и самых тёплых чудес. С днём рождения.</p>
+        <p class="signature">для тебя</p>
+      </article>
+      <button class="back-link" type="button" data-target="gifts">back</button>
+    </section>
+
+    <section class="screen present" data-screen="present">
+      <div class="present-box" aria-hidden="true">
+        <div class="lid"></div>
+        <div class="box"></div>
+        <div class="bow"></div>
+      </div>
+      <h2>Ксюша, это всё для тебя</h2>
+      <p class="subtitle">Пусть сегодня случится что-то очень хорошее.</p>
+      <button class="text-button restart" type="button" data-target="intro">ещё раз</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
