@@ -2,6 +2,27 @@ const screens = [...document.querySelectorAll(".screen")];
 const navButtons = [...document.querySelectorAll("[data-target]")];
 const songScreen = document.querySelector(".song");
 const playToggle = document.querySelector(".play-toggle");
+const songAudio = document.querySelector("#song-audio");
+
+function pauseSong() {
+  songScreen.classList.remove("is-playing");
+  playToggle.setAttribute("aria-label", "Включить песню");
+  songAudio.pause();
+}
+
+async function toggleSong() {
+  if (songAudio.paused) {
+    try {
+      await songAudio.play();
+      songScreen.classList.add("is-playing");
+      playToggle.setAttribute("aria-label", "Остановить песню");
+    } catch {
+      songScreen.classList.remove("is-playing");
+    }
+  } else {
+    pauseSong();
+  }
+}
 
 function showScreen(name, syncHash = true) {
   screens.forEach((screen) => {
@@ -9,7 +30,7 @@ function showScreen(name, syncHash = true) {
   });
 
   if (name !== "song") {
-    songScreen.classList.remove("is-playing");
+    pauseSong();
   }
 
   if (syncHash) {
@@ -22,7 +43,12 @@ navButtons.forEach((button) => {
 });
 
 playToggle.addEventListener("click", () => {
-  songScreen.classList.toggle("is-playing");
+  toggleSong();
+});
+
+songAudio.addEventListener("ended", () => {
+  pauseSong();
+  songAudio.currentTime = 0;
 });
 
 window.addEventListener("keydown", (event) => {

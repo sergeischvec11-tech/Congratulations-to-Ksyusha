@@ -403,7 +403,7 @@ h2 {
   position: relative;
   display: grid;
   place-items: center;
-  gap: 1.5rem;
+  gap: 1.1rem;
   width: min(42rem, 92vw);
   min-height: min(52vh, 24rem);
   padding: 2rem;
@@ -505,6 +505,17 @@ h2 {
 
 @keyframes equalize {
   to { transform: scaleY(0.34); opacity: 0.62; }
+}
+
+.track-title {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: rgba(255, 245, 234, 0.9);
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 .note {
