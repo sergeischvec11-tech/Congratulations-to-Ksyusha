@@ -150,6 +150,15 @@ h1 {
     0 28px 42px rgba(6, 33, 55, 0.28);
 }
 
+.intro .eyebrow,
+.intro .birthday-title,
+.intro .subtitle,
+.intro .intro-doodle,
+.intro .next-screen {
+  position: relative;
+  z-index: 2;
+}
+
 h2 {
   max-width: 13ch;
   font-size: 5.2rem;
@@ -566,11 +575,21 @@ body.is-present-screen .ribbon {
   transform: rotate(8deg);
 }
 
+.intro .sticker-top-right {
+  top: clamp(1rem, 4vh, 2rem);
+  right: clamp(0.8rem, 5vw, 4rem);
+}
+
 .sticker-bottom-left {
   left: clamp(0.8rem, 3.8vw, 3.4rem);
   bottom: clamp(4.5rem, 9vh, 6.2rem);
   width: clamp(6.8rem, 10.5vw, 9.2rem);
   transform: rotate(-10deg);
+}
+
+.intro .sticker-bottom-left {
+  left: clamp(0.8rem, 4vw, 3.4rem);
+  bottom: clamp(4.7rem, 8vh, 6rem);
 }
 
 .number-candles {
@@ -1373,10 +1392,22 @@ body.is-present-screen .ribbon {
     transform: rotate(9deg);
   }
 
+  .intro .sticker-top-right {
+    top: clamp(1.15rem, 3vh, 1.8rem);
+    left: calc(100vw - 8.9rem);
+    width: clamp(4.5rem, 20vw, 5.4rem);
+  }
+
   .sticker-bottom-left {
     left: 0.35rem;
     bottom: clamp(4.6rem, 10vh, 6rem);
     width: clamp(4.3rem, 20vw, 6rem);
+  }
+
+  .intro .sticker-bottom-left {
+    left: 0.55rem;
+    bottom: clamp(4.8rem, 9vh, 5.8rem);
+    width: clamp(4rem, 19vw, 5.2rem);
   }
 
   .eyebrow {
