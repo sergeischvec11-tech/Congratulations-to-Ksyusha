@@ -550,6 +550,29 @@ body.is-present-screen .ribbon {
   animation: cakeJump 780ms cubic-bezier(.18, .9, .25, 1);
 }
 
+.party-sticker {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  width: clamp(7rem, 12vw, 10.8rem);
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 20px 22px rgba(14, 62, 88, 0.24));
+}
+
+.sticker-top-right {
+  top: clamp(0.6rem, 2.2vh, 1.4rem);
+  right: clamp(0.8rem, 2.5vw, 2.4rem);
+  transform: rotate(8deg);
+}
+
+.sticker-bottom-left {
+  left: clamp(0.8rem, 3.8vw, 3.4rem);
+  bottom: clamp(4.5rem, 9vh, 6.2rem);
+  width: clamp(6.8rem, 10.5vw, 9.2rem);
+  transform: rotate(-10deg);
+}
+
 .number-candles {
   position: absolute;
   left: 50%;
@@ -1328,35 +1351,32 @@ body.is-present-screen .ribbon {
   .gift-grid {
     grid-template-columns: repeat(3, minmax(4.8rem, 1fr));
     max-width: 21rem;
-    margin-top: clamp(7.4rem, 22vh, 9rem);
+    margin-top: 1.15rem;
     gap: 0.45rem;
   }
 
-  .birthday-balloons {
-    left: 0.35rem;
-    top: clamp(8.9rem, 24vh, 11rem);
-    width: 7.4rem;
-    height: 10.4rem;
-  }
-
+  .birthday-balloons,
   .birthday-cake {
-    left: 58vw;
+    display: none;
+  }
+
+  .party-sticker {
+    width: clamp(4.6rem, 21vw, 6.4rem);
+    opacity: 0.92;
+  }
+
+  .sticker-top-right {
+    top: clamp(2rem, 5vh, 2.7rem);
     right: auto;
-    top: clamp(3.35rem, 10vh, 4.5rem);
-    width: 6.4rem;
-    height: 8rem;
+    left: calc(100vw - 12.2rem);
+    width: clamp(5rem, 22vw, 6rem);
+    transform: rotate(9deg);
   }
 
-  .number-candle {
-    border-width: 3px;
-  }
-
-  .cake-tier {
-    border-width: 4px;
-  }
-
-  .icing {
-    border-width: 4px;
+  .sticker-bottom-left {
+    left: 0.35rem;
+    bottom: clamp(4.6rem, 10vh, 6rem);
+    width: clamp(4.3rem, 20vw, 6rem);
   }
 
   .eyebrow {
