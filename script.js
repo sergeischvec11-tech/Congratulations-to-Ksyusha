@@ -8,9 +8,11 @@ const photoButtons = [...document.querySelectorAll("[data-photo]")];
 const lightbox = document.querySelector("[data-lightbox]");
 const lightboxImage = document.querySelector("[data-lightbox-image]");
 const lightboxClose = document.querySelector("[data-lightbox-close]");
+const cakeButton = document.querySelector("[data-cake-toggle]");
+const cakeDigits = [...document.querySelectorAll("[data-cake-digit]")];
 
 function setSongPlaying(isPlaying) {
-  songScreen.classList.toggle("is-playing", isPlaying);
+  songScreen?.classList.toggle("is-playing", isPlaying);
   appShell.classList.toggle("is-song-playing", isPlaying);
   document.body.classList.toggle("is-song-playing", isPlaying);
   audioButtons.forEach((button) => {
@@ -21,10 +23,14 @@ function setSongPlaying(isPlaying) {
 
 function pauseSong() {
   setSongPlaying(false);
-  songAudio.pause();
+  songAudio?.pause();
 }
 
 async function toggleSong() {
+  if (!songAudio) {
+    return;
+  }
+
   if (songAudio.paused) {
     try {
       await songAudio.play();
@@ -60,20 +66,43 @@ audioButtons.forEach((button) => {
   });
 });
 
-songAudio.addEventListener("ended", () => {
-  pauseSong();
-  songAudio.currentTime = 0;
-});
+if (songAudio) {
+  songAudio.addEventListener("ended", () => {
+    pauseSong();
+    songAudio.currentTime = 0;
+  });
 
-songAudio.addEventListener("play", () => {
-  setSongPlaying(true);
-});
+  songAudio.addEventListener("play", () => {
+    setSongPlaying(true);
+  });
 
-songAudio.addEventListener("pause", () => {
-  if (!songAudio.ended) {
-    setSongPlaying(false);
-  }
-});
+  songAudio.addEventListener("pause", () => {
+    if (!songAudio.ended) {
+      setSongPlaying(false);
+    }
+  });
+}
+
+function celebrateCake() {
+  cakeDigits.forEach((digit, index) => {
+    digit.textContent = index === 0 ? "1" : "8";
+  });
+
+  cakeButton.classList.add("is-lit");
+  cakeButton.classList.remove("is-celebrating");
+  void cakeButton.offsetWidth;
+  cakeButton.classList.add("is-celebrating");
+  cakeButton.setAttribute("aria-label", "Свечи 18 зажжены");
+}
+
+if (cakeButton) {
+  cakeButton.addEventListener("click", celebrateCake);
+  cakeButton.addEventListener("animationend", (event) => {
+    if (event.target === cakeButton) {
+      cakeButton.classList.remove("is-celebrating");
+    }
+  });
+}
 
 window.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {

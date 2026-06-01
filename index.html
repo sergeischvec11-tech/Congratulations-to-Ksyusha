@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Montserrat:wght@500;700;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=birthday-3d-gift-v1">
+  <link rel="stylesheet" href="styles.css?v=cake-balloons-v1">
 </head>
 <body>
   <main class="site-shell" aria-live="polite">
@@ -51,6 +51,34 @@
     <section class="screen gifts" data-screen="gifts">
       <p class="eyebrow">these are for you</p>
       <h2>Эти подарки для тебя</h2>
+      <div class="party-decor">
+        <div class="birthday-balloons" aria-hidden="true">
+          <span class="balloon balloon-pink"></span>
+          <span class="balloon balloon-gold"></span>
+          <span class="balloon balloon-blue"></span>
+          <span class="balloon balloon-pearl"></span>
+          <span class="balloon-string string-one"></span>
+          <span class="balloon-string string-two"></span>
+          <span class="balloon-string string-three"></span>
+          <span class="balloon-string string-four"></span>
+          <span class="balloon-bow"></span>
+        </div>
+        <button class="birthday-cake" type="button" data-cake-toggle aria-label="Зажечь свечи на торте">
+          <span class="number-candles" aria-hidden="true">
+            <span class="number-candle"><b data-cake-digit>8</b><i></i></span>
+            <span class="number-candle"><b data-cake-digit>1</b><i></i></span>
+          </span>
+          <span class="cake-tier cake-top">
+            <span class="icing"></span>
+            <span class="sprinkles"></span>
+          </span>
+          <span class="cake-tier cake-bottom">
+            <span class="icing"></span>
+            <span class="sprinkles"></span>
+          </span>
+          <span class="cake-plate"></span>
+        </button>
+      </div>
       <div class="gift-grid">
         <button class="gift-item" type="button" data-target="memories" aria-label="Открыть воспоминания">
           <svg viewBox="0 0 64 64" aria-hidden="true">
@@ -60,14 +88,6 @@
             <circle cx="46" cy="25" r="2"></circle>
           </svg>
           <span>кадры</span>
-        </button>
-        <button class="gift-item" type="button" data-target="song" aria-label="Открыть музыку">
-          <svg viewBox="0 0 64 64" aria-hidden="true">
-            <path d="M18 38V25a14 14 0 0 1 28 0v13"></path>
-            <path d="M18 38v6a7 7 0 0 0 7 7h1V34h-1a7 7 0 0 0-7 7"></path>
-            <path d="M46 38v6a7 7 0 0 1-7 7h-1V34h1a7 7 0 0 1 7 7"></path>
-          </svg>
-          <span>песня</span>
         </button>
         <button class="gift-item" type="button" data-target="letter" aria-label="Открыть письмо">
           <svg viewBox="0 0 64 64" aria-hidden="true">
@@ -123,25 +143,6 @@
       <button class="back-link" type="button" data-target="gifts">back</button>
     </section>
 
-    <section class="screen song" data-screen="song">
-      <p class="eyebrow">this song reminds me of you</p>
-      <div class="music-card">
-        <button class="play-toggle" type="button" data-audio-toggle aria-label="Включить музыку" aria-pressed="false">
-          <svg viewBox="0 0 64 64" aria-hidden="true">
-            <path d="M25 18v28l22-14-22-14Z"></path>
-          </svg>
-        </button>
-        <div class="record" aria-hidden="true">
-          <span></span>
-        </div>
-        <div class="wave" aria-hidden="true">
-          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-        </div>
-        <p class="track-title">Руки Вверх - 18 мне уже</p>
-      </div>
-      <button class="back-link" type="button" data-target="gifts">back</button>
-    </section>
-
     <section class="screen letter" data-screen="letter">
       <article class="note">
         <p class="note-title">Моя Ксюша,</p>
@@ -169,6 +170,6 @@
   </div>
   <audio class="background-audio" id="song-audio" controls preload="auto" src="assets/ruki-vverh-18-mne-uzhe.mp4"></audio>
 
-  <script src="script.js?v=birthday-3d-gift-v1"></script>
+  <script src="script.js?v=cake-balloons-v1"></script>
 </body>
 </html>
