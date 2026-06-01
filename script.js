@@ -10,6 +10,13 @@ const lightboxImage = document.querySelector("[data-lightbox-image]");
 const lightboxClose = document.querySelector("[data-lightbox-close]");
 const cakeButton = document.querySelector("[data-cake-toggle]");
 const cakeDigits = [...document.querySelectorAll("[data-cake-digit]")];
+const letterTrack = document.querySelector("[data-letter-track]");
+const letterViewport = document.querySelector(".letter-viewport");
+const letterSlides = [...document.querySelectorAll("[data-letter-slide]")];
+const letterDots = [...document.querySelectorAll("[data-letter-dot]")];
+const letterPrev = document.querySelector("[data-letter-prev]");
+const letterNext = document.querySelector("[data-letter-next]");
+let activeLetterIndex = 0;
 
 function setSongPlaying(isPlaying) {
   songScreen?.classList.toggle("is-playing", isPlaying);
@@ -104,7 +111,98 @@ if (cakeButton) {
   });
 }
 
+function setActiveLetter(index) {
+  if (!letterTrack || letterSlides.length === 0) {
+    return;
+  }
+
+  activeLetterIndex = (index + letterSlides.length) % letterSlides.length;
+  letterTrack.style.transform = `translateX(-${activeLetterIndex * 100}%)`;
+
+  letterSlides.forEach((slide, slideIndex) => {
+    const isCurrent = slideIndex === activeLetterIndex;
+    slide.classList.toggle("is-current", isCurrent);
+    slide.setAttribute("aria-hidden", String(!isCurrent));
+
+    if (isCurrent) {
+      slide.scrollTop = 0;
+    }
+  });
+
+  letterDots.forEach((dot, dotIndex) => {
+    dot.classList.toggle("is-active", dotIndex === activeLetterIndex);
+    dot.setAttribute("aria-pressed", String(dotIndex === activeLetterIndex));
+  });
+}
+
+function moveLetter(direction) {
+  setActiveLetter(activeLetterIndex + direction);
+}
+
+letterPrev?.addEventListener("click", () => {
+  moveLetter(-1);
+});
+
+letterNext?.addEventListener("click", () => {
+  moveLetter(1);
+});
+
+letterDots.forEach((dot, index) => {
+  dot.addEventListener("click", () => {
+    setActiveLetter(index);
+  });
+});
+
+if (letterViewport) {
+  let swipeStart = null;
+
+  letterViewport.addEventListener("pointerdown", (event) => {
+    swipeStart = {
+      id: event.pointerId,
+      x: event.clientX,
+      y: event.clientY
+    };
+    letterViewport.setPointerCapture?.(event.pointerId);
+  });
+
+  letterViewport.addEventListener("pointerup", (event) => {
+    if (!swipeStart || event.pointerId !== swipeStart.id) {
+      return;
+    }
+
+    const deltaX = event.clientX - swipeStart.x;
+    const deltaY = event.clientY - swipeStart.y;
+
+    if (Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
+      moveLetter(deltaX < 0 ? 1 : -1);
+    }
+
+    letterViewport.releasePointerCapture?.(event.pointerId);
+    swipeStart = null;
+  });
+
+  letterViewport.addEventListener("pointercancel", () => {
+    swipeStart = null;
+  });
+}
+
+setActiveLetter(0);
+
 window.addEventListener("keydown", (event) => {
+  if (document.querySelector(".letter.is-active")) {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      moveLetter(-1);
+      return;
+    }
+
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      moveLetter(1);
+      return;
+    }
+  }
+
   if (event.key === "Escape") {
     if (!lightbox.hidden) {
       closeLightbox();
