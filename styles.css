@@ -1142,6 +1142,13 @@ body.is-present-screen .ribbon {
   clip-path: polygon(0 7%, 5% 7%, 5% 0, 12% 5%, 19% 0, 26% 5%, 33% 0, 40% 5%, 47% 0, 54% 5%, 61% 0, 68% 5%, 75% 0, 82% 5%, 89% 0, 95% 7%, 100% 7%, 95% 13%, 100% 20%, 95% 27%, 100% 34%, 95% 41%, 100% 48%, 95% 55%, 100% 62%, 95% 69%, 100% 76%, 95% 83%, 100% 90%, 95% 93%, 95% 100%, 88% 95%, 81% 100%, 74% 95%, 67% 100%, 60% 95%, 53% 100%, 46% 95%, 39% 100%, 32% 95%, 25% 100%, 18% 95%, 11% 100%, 5% 93%, 0 93%, 5% 86%, 0 79%, 5% 72%, 0 65%, 5% 58%, 0 51%, 5% 44%, 0 37%, 5% 30%, 0 23%, 5% 16%);
 }
 
+.note-girl {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 42%),
+    #bd5d8f;
+  box-shadow: 0 30px 48px rgba(104, 31, 68, 0.26);
+}
+
 .letter {
   padding-bottom: clamp(5rem, 11vh, 7rem);
   background:
@@ -1425,9 +1432,121 @@ body.is-present-screen .ribbon {
   display: block;
   width: 100%;
   height: auto;
+  opacity: 0;
   background: #020202;
   border: 3px solid rgba(255, 253, 248, 0.94);
   box-shadow: 0 30px 58px rgba(3, 18, 32, 0.54);
+  transform: scale(0.84);
+  transition: opacity 520ms ease 360ms, transform 620ms ease 360ms;
+}
+
+.present.is-gift-open .star-map-poster {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.present-box {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  width: clamp(10rem, 34vw, 18rem);
+  height: clamp(9rem, 29vw, 15rem);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: transform 180ms ease, filter 180ms ease;
+  filter: drop-shadow(0 26px 34px rgba(3, 18, 32, 0.44));
+}
+
+.present-box:hover {
+  transform: translate(-50%, calc(-50% - 4px));
+}
+
+.present-box:disabled {
+  cursor: default;
+  pointer-events: none;
+}
+
+.gift-box-base,
+.gift-lid {
+  position: absolute;
+  left: 50%;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.16), transparent 36%),
+    rgba(42, 113, 156, 0.62);
+  border: 5px solid var(--cream);
+  box-shadow: 0 24px 38px rgba(3, 18, 32, 0.34);
+  transform: translateX(-50%);
+}
+
+.gift-box-base {
+  bottom: 0;
+  width: 78%;
+  height: 62%;
+}
+
+.gift-lid {
+  top: 18%;
+  width: 92%;
+  height: 24%;
+  animation: lidFloat 2.2s ease-in-out infinite alternate;
+}
+
+.gift-box-base::before,
+.gift-lid::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  bottom: -5px;
+  left: 50%;
+  width: 5px;
+  background: var(--cream);
+  transform: translateX(-50%);
+}
+
+.gift-bow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 46%;
+  aspect-ratio: 2.2;
+  transform: translateX(-50%);
+}
+
+.gift-bow::before,
+.gift-bow::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 48%;
+  height: 100%;
+  border: 5px solid var(--cream);
+  border-radius: 60% 45% 60% 45%;
+}
+
+.gift-bow::before {
+  left: 0;
+  transform: rotate(18deg);
+}
+
+.gift-bow::after {
+  right: 0;
+  transform: rotate(-18deg);
+}
+
+.present.is-gift-open .gift-lid {
+  animation: giftLidFly 1.05s cubic-bezier(.22, .78, .18, 1) forwards;
+}
+
+.present.is-gift-open .gift-bow {
+  animation: giftBowFly 1.05s cubic-bezier(.22, .78, .18, 1) forwards;
+}
+
+.present.is-gift-open .gift-box-base {
+  animation: giftBoxDrop 1.05s cubic-bezier(.22, .78, .18, 1) forwards;
 }
 
 .present-caption,
@@ -1445,6 +1564,33 @@ body.is-present-screen .ribbon {
   to {
     opacity: 0.82;
     filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.44));
+  }
+}
+
+@keyframes lidFloat {
+  to {
+    transform: translate(-50%, -10px) rotate(-2deg);
+  }
+}
+
+@keyframes giftLidFly {
+  to {
+    opacity: 0;
+    transform: translate(-50%, -190%) rotate(-18deg);
+  }
+}
+
+@keyframes giftBowFly {
+  to {
+    opacity: 0;
+    transform: translate(-52%, -250%) rotate(18deg);
+  }
+}
+
+@keyframes giftBoxDrop {
+  to {
+    opacity: 0;
+    transform: translate(-50%, 185%) scale(0.94);
   }
 }
 

@@ -16,6 +16,8 @@ const letterSlides = [...document.querySelectorAll("[data-letter-slide]")];
 const letterDots = [...document.querySelectorAll("[data-letter-dot]")];
 const letterPrev = document.querySelector("[data-letter-prev]");
 const letterNext = document.querySelector("[data-letter-next]");
+const giftScreen = document.querySelector(".present");
+const openGiftButton = document.querySelector("[data-open-gift]");
 let activeLetterIndex = 0;
 
 function setSongPlaying(isPlaying) {
@@ -51,18 +53,28 @@ async function toggleSong() {
 }
 
 function showScreen(name, syncHash = true) {
+  const screenName = name === "present-open" ? "present" : name;
+
   screens.forEach((screen) => {
-    screen.classList.toggle("is-active", screen.dataset.screen === name);
+    screen.classList.toggle("is-active", screen.dataset.screen === screenName);
   });
-  document.body.classList.toggle("is-present-screen", name === "present");
+  document.body.classList.toggle("is-present-screen", screenName === "present");
 
   if (syncHash) {
     history.replaceState(null, "", `#${name}`);
+  }
+
+  if (name === "present-open") {
+    openGift();
   }
 }
 
 navButtons.forEach((button) => {
   button.addEventListener("click", () => {
+    if (button.dataset.target === "present" || button.classList.contains("restart")) {
+      resetGift();
+    }
+
     showScreen(button.dataset.target);
   });
 });
@@ -188,6 +200,26 @@ if (letterViewport) {
 
 setActiveLetter(0);
 
+function openGift() {
+  if (!giftScreen || !openGiftButton) {
+    return;
+  }
+
+  giftScreen.classList.add("is-gift-open");
+  openGiftButton.disabled = true;
+}
+
+function resetGift() {
+  if (!giftScreen || !openGiftButton) {
+    return;
+  }
+
+  giftScreen.classList.remove("is-gift-open");
+  openGiftButton.disabled = false;
+}
+
+openGiftButton?.addEventListener("click", openGift);
+
 window.addEventListener("keydown", (event) => {
   if (document.querySelector(".letter.is-active")) {
     if (event.key === "ArrowLeft") {
@@ -240,9 +272,9 @@ lightbox.addEventListener("click", (event) => {
 
 window.addEventListener("hashchange", () => {
   const requested = location.hash.slice(1);
-  const exists = screens.some((screen) => screen.dataset.screen === requested);
+  const exists = requested === "present-open" || screens.some((screen) => screen.dataset.screen === requested);
   showScreen(exists ? requested : "intro", false);
 });
 
 const initial = location.hash.slice(1);
-showScreen(screens.some((screen) => screen.dataset.screen === initial) ? initial : "intro", false);
+showScreen(initial === "present-open" || screens.some((screen) => screen.dataset.screen === initial) ? initial : "intro", false);
