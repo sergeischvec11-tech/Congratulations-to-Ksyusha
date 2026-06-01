@@ -113,6 +113,43 @@ h1 {
   font-size: 6.6rem;
 }
 
+.birthday-title {
+  display: grid;
+  gap: 0.02em;
+  max-width: min(12ch, calc(100vw - 2rem));
+  color: #fffdf8;
+  font-size: clamp(3rem, 8vw, 7.1rem);
+  line-height: 0.82;
+  text-transform: none;
+  transform: perspective(900px) rotateX(8deg) rotateY(-8deg);
+  transform-style: preserve-3d;
+  text-shadow:
+    0 1px 0 #c8f2ff,
+    0 2px 0 #a8deef,
+    0 3px 0 #87c8e0,
+    0 4px 0 #6eabc9,
+    0 5px 0 #5388aa,
+    0 12px 16px rgba(6, 33, 55, 0.3),
+    0 28px 40px rgba(6, 33, 55, 0.3);
+  animation: titleFloat3d 3.8s ease-in-out infinite alternate;
+}
+
+.birthday-title span {
+  display: block;
+}
+
+.birthday-title span:last-child {
+  color: #fff0f7;
+  text-shadow:
+    0 1px 0 #ffd1df,
+    0 2px 0 #f5a7c1,
+    0 3px 0 #e882aa,
+    0 4px 0 #d16092,
+    0 5px 0 #a64273,
+    0 12px 18px rgba(90, 28, 58, 0.28),
+    0 28px 42px rgba(6, 33, 55, 0.28);
+}
+
 h2 {
   max-width: 13ch;
   font-size: 5.2rem;
@@ -273,18 +310,53 @@ body.is-present-screen .ribbon {
 }
 
 .intro-doodle {
-  width: clamp(7.8rem, 24vw, 13rem);
-  opacity: 0.86;
+  width: clamp(8.4rem, 22vw, 13rem);
+  perspective: 800px;
+  opacity: 0.96;
 }
 
 .intro-doodle svg {
+  display: block;
   width: 100%;
+  overflow: visible;
+}
+
+.intro-heart-3d {
+  transform: perspective(800px) rotateX(10deg) rotateY(-18deg) rotateZ(-4deg);
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 22px 24px rgba(14, 62, 88, 0.3));
+  animation: heartFloat3d 3.2s ease-in-out infinite alternate;
+}
+
+.heart-side {
+  fill: url(#heartSide);
+  opacity: 0.8;
+  transform: translate3d(10px, 10px, -26px);
+}
+
+.heart-face {
+  fill: url(#heartFace);
+  stroke: rgba(255, 253, 248, 0.96);
+  stroke-width: 4;
+}
+
+.heart-shine {
   fill: none;
-  stroke: var(--cream);
-  stroke-width: 5;
+  stroke: rgba(255, 255, 255, 0.78);
+  stroke-width: 7;
   stroke-linecap: round;
-  stroke-linejoin: round;
-  filter: drop-shadow(0 16px 20px var(--shadow));
+}
+
+@keyframes titleFloat3d {
+  to {
+    transform: perspective(900px) rotateX(5deg) rotateY(6deg) translateY(-0.16em);
+  }
+}
+
+@keyframes heartFloat3d {
+  to {
+    transform: perspective(800px) rotateX(4deg) rotateY(14deg) rotateZ(3deg) translateY(-0.45rem);
+  }
 }
 
 .gift-grid {
@@ -666,12 +738,27 @@ body.is-present-screen .ribbon {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.42;
+  opacity: 0.58;
   background-image:
-    radial-gradient(circle, rgba(255, 255, 255, 0.86) 0 1px, transparent 1.2px),
-    radial-gradient(circle, rgba(202, 238, 255, 0.68) 0 1px, transparent 1.3px);
-  background-position: 0 0, 28px 36px;
-  background-size: 92px 92px, 138px 138px;
+    radial-gradient(circle at 6% 14%, rgba(255, 255, 255, 0.92) 0 1.1px, transparent 1.45px),
+    radial-gradient(circle at 13% 63%, rgba(255, 255, 255, 0.72) 0 1px, transparent 1.35px),
+    radial-gradient(circle at 18% 31%, rgba(205, 238, 255, 0.64) 0 1.2px, transparent 1.55px),
+    radial-gradient(circle at 23% 87%, rgba(255, 255, 255, 0.78) 0 1px, transparent 1.35px),
+    radial-gradient(circle at 27% 9%, rgba(255, 255, 255, 0.66) 0 1px, transparent 1.35px),
+    radial-gradient(circle at 32% 48%, rgba(216, 244, 255, 0.82) 0 1.35px, transparent 1.7px),
+    radial-gradient(circle at 36% 78%, rgba(255, 255, 255, 0.6) 0 1px, transparent 1.35px),
+    radial-gradient(circle at 41% 20%, rgba(255, 255, 255, 0.84) 0 1.1px, transparent 1.45px),
+    radial-gradient(circle at 46% 91%, rgba(203, 237, 255, 0.7) 0 1px, transparent 1.35px),
+    radial-gradient(circle at 53% 12%, rgba(255, 255, 255, 0.7) 0 1px, transparent 1.35px),
+    radial-gradient(circle at 57% 69%, rgba(255, 255, 255, 0.86) 0 1.2px, transparent 1.55px),
+    radial-gradient(circle at 63% 35%, rgba(204, 239, 255, 0.64) 0 1px, transparent 1.35px),
+    radial-gradient(circle at 69% 8%, rgba(255, 255, 255, 0.9) 0 1.2px, transparent 1.55px),
+    radial-gradient(circle at 74% 56%, rgba(255, 255, 255, 0.62) 0 1px, transparent 1.35px),
+    radial-gradient(circle at 81% 24%, rgba(204, 239, 255, 0.76) 0 1px, transparent 1.35px),
+    radial-gradient(circle at 86% 83%, rgba(255, 255, 255, 0.82) 0 1.1px, transparent 1.45px),
+    radial-gradient(circle at 91% 45%, rgba(255, 255, 255, 0.68) 0 1px, transparent 1.35px),
+    radial-gradient(circle at 96% 12%, rgba(214, 244, 255, 0.74) 0 1.2px, transparent 1.55px);
+  animation: nightTwinkle 3.6s ease-in-out infinite alternate;
 }
 
 .shooting-stars {
@@ -684,26 +771,29 @@ body.is-present-screen .ribbon {
 
 .shooting-stars span {
   position: absolute;
-  top: -12vh;
+  top: var(--star-y);
   left: var(--star-x);
-  width: 3px;
-  height: 3px;
+  width: clamp(5.2rem, 12vw, 9rem);
+  height: 2px;
   border-radius: 999px;
   opacity: 0;
-  background: var(--cream);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.98), rgba(215, 242, 255, 0.7) 34%, transparent);
   box-shadow: 0 0 14px rgba(255, 255, 255, 0.92);
+  transform: translate3d(0, 0, 0) rotate(-32deg);
+  transform-origin: left center;
 }
 
-.shooting-stars span::after {
+.shooting-stars span::before {
   content: "";
   position: absolute;
-  top: 1px;
-  right: 1px;
-  width: clamp(4rem, 14vw, 8rem);
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.95));
-  transform: translateX(-100%) rotate(-35deg);
-  transform-origin: right center;
+  left: -2px;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--cream);
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.95);
+  transform: translateY(-50%);
 }
 
 .present.is-active .shooting-stars span {
@@ -712,39 +802,67 @@ body.is-present-screen .ribbon {
 }
 
 .shooting-stars span:nth-child(1) {
-  --star-x: 8%;
+  --star-x: 98%;
+  --star-y: -10vh;
   --star-speed: 3.1s;
   --star-delay: 0.1s;
+  --fall-x: -36vw;
 }
 
 .shooting-stars span:nth-child(2) {
-  --star-x: 24%;
+  --star-x: 76%;
+  --star-y: -16vh;
   --star-speed: 3.8s;
   --star-delay: 1.1s;
+  --fall-x: -30vw;
 }
 
 .shooting-stars span:nth-child(3) {
-  --star-x: 44%;
+  --star-x: 112%;
+  --star-y: -7vh;
   --star-speed: 2.9s;
   --star-delay: 0.55s;
+  --fall-x: -42vw;
 }
 
 .shooting-stars span:nth-child(4) {
-  --star-x: 62%;
+  --star-x: 55%;
+  --star-y: -14vh;
   --star-speed: 3.5s;
   --star-delay: 1.65s;
+  --fall-x: -26vw;
 }
 
 .shooting-stars span:nth-child(5) {
-  --star-x: 78%;
+  --star-x: 88%;
+  --star-y: -22vh;
   --star-speed: 3.2s;
   --star-delay: 0.85s;
+  --fall-x: -34vw;
 }
 
 .shooting-stars span:nth-child(6) {
-  --star-x: 90%;
+  --star-x: 38%;
+  --star-y: -18vh;
   --star-speed: 4s;
   --star-delay: 2.05s;
+  --fall-x: -22vw;
+}
+
+.shooting-stars span:nth-child(7) {
+  --star-x: 68%;
+  --star-y: -28vh;
+  --star-speed: 3.7s;
+  --star-delay: 2.7s;
+  --fall-x: -32vw;
+}
+
+.shooting-stars span:nth-child(8) {
+  --star-x: 120%;
+  --star-y: -18vh;
+  --star-speed: 4.3s;
+  --star-delay: 3.2s;
+  --fall-x: -48vw;
 }
 
 .gift-stage {
@@ -752,7 +870,7 @@ body.is-present-screen .ribbon {
   z-index: 2;
   display: grid;
   place-items: center;
-  width: min(27rem, 78vw);
+  width: min(23rem, 76vw);
 }
 
 .star-map-poster {
@@ -764,23 +882,41 @@ body.is-present-screen .ribbon {
   box-shadow: 0 30px 58px rgba(3, 18, 32, 0.54);
 }
 
+.present-caption,
+.present-button {
+  position: relative;
+  z-index: 2;
+}
+
+.present-caption {
+  color: rgba(255, 253, 248, 0.88);
+  text-shadow: 0 10px 22px rgba(2, 16, 32, 0.5);
+}
+
+@keyframes nightTwinkle {
+  to {
+    opacity: 0.82;
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.44));
+  }
+}
+
 @keyframes starFall {
   0% {
     opacity: 0;
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(0, -12vh, 0) rotate(-32deg);
   }
 
-  8% {
-    opacity: 1;
+  10% {
+    opacity: 0.96;
   }
 
-  72% {
-    opacity: 1;
+  76% {
+    opacity: 0.96;
   }
 
   100% {
     opacity: 0;
-    transform: translate3d(34vw, 124vh, 0);
+    transform: translate3d(var(--fall-x), 122vh, 0) rotate(-32deg);
   }
 }
 
@@ -801,6 +937,12 @@ body.is-present-screen .ribbon {
   h1 {
     max-width: min(8ch, calc(100vw - 2.5rem));
     font-size: 3.55rem;
+  }
+
+  .birthday-title {
+    max-width: min(10.5ch, calc(100vw - 2.8rem));
+    font-size: clamp(1.95rem, 8.7vw, 2.8rem);
+    transform: perspective(900px) rotateX(7deg) rotateY(-3deg);
   }
 
   h2 {

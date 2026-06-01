@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Montserrat:wght@500;700;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=night-gift-v2">
+  <link rel="stylesheet" href="styles.css?v=birthday-3d-gift-v1">
 </head>
 <body>
   <main class="site-shell" aria-live="polite">
@@ -21,14 +21,28 @@
     <section class="screen intro is-active" data-screen="intro">
       <div class="sparkles" aria-hidden="true"></div>
       <p class="eyebrow">birthday website</p>
-      <h1>Привет, Ксюша!</h1>
+      <h1 class="birthday-title" aria-label="С днем рождения, Ксюшенька!">
+        <span>С днем</span>
+        <span>рождения</span>
+        <span>Ксюшенька!</span>
+      </h1>
       <p class="subtitle">Для тебя здесь спрятано немного тепла, музыки и улыбок.</p>
-      <div class="intro-doodle" aria-hidden="true">
-        <svg viewBox="0 0 180 150" role="img">
-          <path d="M54 104c-15-10-23-25-18-42 6-20 27-22 40-5 12-20 37-18 47 1 12 22-2 50-48 69-7-9-14-16-21-23Z"/>
-          <path d="M89 28c9 4 15 11 18 21"/>
-          <path d="M128 83c11-9 14-25 7-38"/>
-          <path d="M40 66c-7 15-3 30 13 43"/>
+      <div class="intro-doodle intro-heart-3d" aria-hidden="true">
+        <svg viewBox="0 0 180 160" role="img">
+          <defs>
+            <linearGradient id="heartFace" x1="42" y1="24" x2="128" y2="132" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#fff7fb"/>
+              <stop offset="0.42" stop-color="#f9a8c7"/>
+              <stop offset="1" stop-color="#d74f8f"/>
+            </linearGradient>
+            <linearGradient id="heartSide" x1="48" y1="46" x2="132" y2="142" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#77c6e8"/>
+              <stop offset="1" stop-color="#386b9c"/>
+            </linearGradient>
+          </defs>
+          <path class="heart-side" d="M55 112c-18-14-29-33-22-56 8-27 37-29 55-7 17-25 51-22 64 4 15 31-5 68-62 94-10-13-22-24-35-35Z"/>
+          <path class="heart-face" d="M50 102c-17-13-27-31-20-52 8-25 35-27 51-6 16-24 48-21 60 4 15 29-4 64-56 88-10-12-21-23-35-34Z"/>
+          <path class="heart-shine" d="M53 55c8-15 25-16 36-3"/>
         </svg>
       </div>
       <button class="text-button next-screen" type="button" data-target="gifts">дальше</button>
@@ -140,11 +154,13 @@
 
     <section class="screen present" data-screen="present">
       <div class="shooting-stars" aria-hidden="true">
-        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
       </div>
       <div class="gift-stage" aria-label="Звёздная карта">
         <img class="star-map-poster" src="assets/gift/star-map-2.png" alt="">
       </div>
+      <p class="subtitle present-caption">Пусть сегодня случится что-то очень хорошее.</p>
+      <button class="text-button restart present-button" type="button" data-target="intro">ещё раз</button>
     </section>
   </main>
   <div class="photo-lightbox" data-lightbox hidden>
@@ -153,6 +169,6 @@
   </div>
   <audio class="background-audio" id="song-audio" controls preload="auto" src="assets/ruki-vverh-18-mne-uzhe.mp4"></audio>
 
-  <script src="script.js?v=night-gift-v2"></script>
+  <script src="script.js?v=birthday-3d-gift-v1"></script>
 </body>
 </html>
