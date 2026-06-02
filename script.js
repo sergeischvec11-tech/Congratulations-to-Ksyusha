@@ -276,5 +276,13 @@ window.addEventListener("hashchange", () => {
   showScreen(exists ? requested : "intro", false);
 });
 
-const initial = location.hash.slice(1);
-showScreen(initial === "present-open" || screens.some((screen) => screen.dataset.screen === initial) ? initial : "intro", false);
+function clearInitialHash() {
+  if (location.hash) {
+    history.replaceState(null, "", `${location.pathname}${location.search}`);
+  }
+}
+
+clearInitialHash();
+resetGift();
+showScreen("intro", false);
+document.documentElement.classList.remove("app-loading");

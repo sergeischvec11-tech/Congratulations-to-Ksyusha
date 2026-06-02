@@ -1,13 +1,22 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" class="app-loading">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ксюша</title>
+  <style>
+    html.app-loading {
+      background: #9fdcf2;
+    }
+
+    html.app-loading body {
+      visibility: hidden;
+    }
+  </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Montserrat:wght@500;700;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=gift-box-v1">
+  <link rel="stylesheet" href="styles.css?v=ios-start-v1">
 </head>
 <body>
   <main class="site-shell" aria-live="polite">
@@ -256,6 +265,6 @@
   </div>
   <audio class="background-audio" id="song-audio" controls preload="auto" src="assets/ruki-vverh-18-mne-uzhe.mp4"></audio>
 
-  <script src="script.js?v=gift-box-v1"></script>
+  <script src="script.js?v=ios-start-v1"></script>
 </body>
 </html>
