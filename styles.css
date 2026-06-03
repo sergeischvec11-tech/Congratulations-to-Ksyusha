@@ -44,9 +44,18 @@ button {
   z-index: 1000;
   width: min(18rem, calc(100vw - 6rem));
   height: 2.5rem;
+  overflow: hidden;
   border-radius: 999px;
+  background: rgba(255, 253, 248, 0.94);
   box-shadow: 0 16px 26px var(--shadow);
+  clip-path: inset(0 round 999px);
   transform: translateX(-50%);
+}
+
+.background-audio::-webkit-media-controls-enclosure,
+.background-audio::-webkit-media-controls-panel {
+  border-radius: 999px;
+  background-color: rgba(255, 253, 248, 0.96);
 }
 
 .grain {
